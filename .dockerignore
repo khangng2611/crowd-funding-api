@@ -1,0 +1,4 @@
+nodes_modules
+.gitignore
+mongodb-data
+.DS_Store
