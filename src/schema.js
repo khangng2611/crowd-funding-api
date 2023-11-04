@@ -14,7 +14,6 @@ const ProjectSchema = new Schema({
     category: String,
     description: {type : String, maxLength : 1000},
     img: String,
-    // investors: [String],
     create_at: {type: Date, default: Date.now},
     start_at: {type:Date, default: Date.now},
     end_at: {type: Date, default: Date.now},

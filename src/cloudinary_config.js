@@ -9,9 +9,17 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,  
 });
 
+const getFilenameWithoutExtension = (filename) => {
+    const lastDotIndex = filename.lastIndexOf('.');
+    if (lastDotIndex === -1) {
+      return filename;
+    }
+    return filename.substring(0, lastDotIndex);
+  }
+
 const imgUpload = async (img) => {
     try {
-        let imgName = img.name;
+        let imgName = getFilenameWithoutExtension(img.name);
         let filePath = './temp';
         if (!fs.existsSync(filePath)) {
             fs.mkdirSync(filePath);
