@@ -1,5 +1,6 @@
 import {Project, Txn} from "./schema.js";
 import { imgUpload } from "./cloudinary_config.js";
+import {hashStringToDigits} from "./crypto.js";
 
 const getAllProjects = async (req, res) => {
     try {
@@ -38,9 +39,6 @@ const updatePoolAndAddTxn = async (req, res) => {
             $inc: {
                 raised: parseFloat(req.body.deposit_amount)
             },
-            // $push: {
-            //     investors: req.body.deposit_address
-            // }
         };
         let project = await Project.findOneAndUpdate(project_find, project_update, {new: true});
         if (project == null) 
@@ -88,9 +86,12 @@ const addProject = async (req, res) => {
             }
         }
         
+        let projectHash = hashStringToDigits(req.body.project_id);
+
         let project = new Project({
             title: req.body.title,
             project_id: req.body.project_id || '',
+            project_hash: projectHash,
             owner: req.body.owner || '',
             address_owner: req.body.address_owner,
             pool: parseFloat(req.body.pool),

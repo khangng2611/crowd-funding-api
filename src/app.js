@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 3000;
 connection();
 app.use(cors());
 app.use(morgan('combined'));
-app.use(bodyParser.json() );
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(fileUpload());
 
 app.use('/', router);

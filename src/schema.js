@@ -1,9 +1,9 @@
-import {model} from 'mongoose';
-import {Schema} from 'mongoose';
+import {model, Schema} from 'mongoose';
 
 const ProjectSchema = new Schema({
     title: {type: String, maxLength : 100},
     project_id: {type: String, maxLength :100},
+    project_hash: {type: String, maxLength :80},
     owner: {type: String, maxLength : 100},
     address_owner : {type: String, maxLength : 100},
     pool: Number,
